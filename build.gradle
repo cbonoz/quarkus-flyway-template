@@ -1,0 +1,82 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+//    id "org.web3j" version "4.8.7"
+
+}
+
+
+
+repositories {
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation 'io.quarkus:quarkus-smallrye-openapi'
+    implementation 'io.quarkus:quarkus-rest-client'
+    implementation 'io.quarkus:quarkus-rest-client-jackson'
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkiverse.amazonservices:quarkus-amazon-services-bom:1.1.1'
+//    implementation 'org.web3j:core:5.0.0'
+
+    implementation 'cglib:cglib:3.3.0'
+    implementation 'io.quarkus:quarkus-flyway'
+
+    implementation 'io.quarkus:quarkus-resteasy-multipart'
+    implementation 'io.quarkus:quarkus-resteasy-jackson'
+    implementation 'io.quarkus:quarkus-arc'
+
+    implementation "software.amazon.awssdk:bom:2.17.197"
+    implementation "software.amazon.awssdk:sts:2.17.197"
+    implementation "software.amazon.awssdk:s3:2.17.197"
+    implementation "software.amazon.awssdk:iam:2.17.197"
+    implementation "software.amazon.awssdk:ses:2.17.197"
+    implementation "software.amazon.awssdk:dynamodb:2.17.197"
+
+    implementation 'org.jdbi:jdbi3-postgres:3.29.0'
+    implementation 'org.jdbi:jdbi3-sqlobject:3.29.0'
+    implementation 'org.jdbi:jdbi3-core:3.29.0'
+    implementation 'org.jdbi:jdbi3-jackson2:3.29.0'
+    implementation 'org.jdbi:jdbi3-bom:3.29.0'
+
+    implementation 'com.twilio.sdk:twilio:8.30.1'
+
+    // https://mvnrepository.com/artifact/com.hubspot.rosetta/RosettaJdbi3
+    implementation 'com.hubspot.rosetta:RosettaJdbi3:3.11.10'
+
+
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    runtimeOnly("io.quarkus:quarkus-jdbc-h2")
+
+    // Hibernate ORM specific dependencies
+    implementation("io.quarkus:quarkus-hibernate-orm")
+
+    // JDBC driver dependencies
+    implementation("io.quarkus:quarkus-jdbc-postgresql")
+
+    testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.rest-assured:rest-assured'
+//    testImplementation 'org.web3j:web3j-unit:4.9.1'
+}
+
+group 'com.stavvy'
+version '1.0.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
